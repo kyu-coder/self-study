@@ -5,6 +5,31 @@ Lecture:
 https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSorter
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Subject: Stick with it
+I was directed here from TYCS over a year ago. I started watching the lectures, along with following the course materials (notes, hw, labs, midterms) 
+and printed copy of SICP. At the beginning, I used Racket and simply-scheme, but once I got to streams I switched to original MIT/GNU Scheme - 
+both worked fine, never had any issues on MacOS.
+
+I have now completed all lectures and read through 4 out of 5 SICP chapters. For people who are starting the course, stick with it. 
+It's worth it. The lectures are a great suplement to SICP, they help explain and highlight the concepts behind each chapter of the book. 
+Mr Harvey does a great job of presenting these concepts in a digestible way. Throughout the course they all add up to give you an overview of 
+big ideas in computer science. And they truly are big ideas - when you implement your own object oriented dialect or a metacircular interpreter, 
+you feel like you possessed some obscure ancient knowledge.
+
+In short, great course. Take your time and enjoy the journey.
+
+Some useful links:
+https://www.gnu.org/software/mit-scheme/
+http://community.schemewiki.org/?SICP-Solutions
+https://crash.net.nz/posts/2014/08/configuring-vim-for-sicp/
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 "We recommend working through at least the first three chapters of SICP and doing the exercises."
 
