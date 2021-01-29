@@ -7,6 +7,22 @@ https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSort
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
+Reviewer: brianharvey - - September 23, 2020
+Subject: Lecture notes, etc.
+Hi, that's me in the videos.
+
+You can find the lecture notes, sample exams with solutions, homework solutions, and other course documents here:
+https://people.eecs.berkeley.edu/~bh/61a-pages
+
+About the software: Your best bet these days might be to use the simply-scheme package in Racket as another commenter suggests below. 
+STk still works for me, but I'm only on MacOS 10.13; I know everything will break if I ever have to replace my Mac with a new one.
+
+I'm refraining from rating my own lectures...
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 Subject: Stick with it
 I was directed here from TYCS over a year ago. I started watching the lectures, along with following the course materials (notes, hw, labs, midterms) 
