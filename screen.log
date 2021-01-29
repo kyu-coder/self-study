@@ -1,11 +1,12 @@
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS/self-study$ cat screen.log
 Script started on 2021-01-28 18:24:57-06:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS[00m$ a
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS$ a
 a: command not found
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS[00m$ b
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS$ b
 b: command not found
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS[00m$ c
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS$ c
 c: command not found
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS[00m$ racket
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS$ racket
 Welcome to Racket v7.2.
 > pi
 3.141592653589793
@@ -14,15 +15,16 @@ Welcome to Racket v7.2.
 ;  cannot reference an identifier before its definition
 ;   in module: top-level
 ; [,bt for context]
-> define[8G[K[7G[K[6G[K> de[K> d[K> [K(define (squre[16G[K[15G[Kare x)
+> (define (square x)
   (* x x))
-> square [9G ( + 2 3 )
+> square ( + 2 3 )
 #<procedure:square>
 5
-> > square ( + 2 3 )[3G> [1@(s[20G)
+> (square ( + 2 3 ))
 25
 > ^D
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS[00m$ exit
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS$ exit
 exit
 
 Script done on 2021-01-28 18:25:56-06:00 [COMMAND_EXIT_CODE="0"]
+
