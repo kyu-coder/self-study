@@ -1,285 +1,19 @@
-Script started on 2021-01-31 09:49:27-06:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="121" LINES="51"]
-(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS/self-study[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS/self-study[00m$ 486
-486: command not found
+Script started on 2021-02-01 23:13:11-06:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="58"]
 (base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS/self-study[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS/self-study[00m$ racket
 Welcome to Racket v7.2.
-> 486
-486
-> (+ 137 349)
-486
-> (- 1000 334)
-666
-> (- 334 1000)
--666
-> (* 5 99)
-495
-> (/ 10 5)
-2
-> (5 > (5> ([K/ 5 10)
-1/2
-> (/ 3/ [8G[7G[K 9 )[10G[K[9G)
-1/3
-> (+ 2.7 10)
-12.7
-> (_ 21 35 12 7)> ([P > ([1@+ 
-75
-> (* 25 4 12)
-1200
-> (+ (* 3 5) (- 10 6))
-19
-> (+ (* 3 (+ (* 2 4) (+ 3 5))) (+ (- 10 7) 6))
-57
-> (* 3 16)
-48
-> (+ 48 9)
-57
-> (define size 2)
-> size
-2
-> (* 5 size)
-10
-> (define pi 3.151[18G[K[17G[K4159)
-> de> d[K> [K(define radius 10)
-> (* pi (* radius radius))
-314.159
-> (define circumference (* 2 pi radius))
-> d> [Kcircumference
-62.8318
 > (define (square x) (* x x))
-> d> [Ksq> s[K> [K(sqa[6G[Kuare 21)
-441
-> (square (+ 2 5))
-49
-> (square (square 3))
-81
-> (+ (square 2) (square 3))
-13
-> (define (sum-of_[18G[K-squares x y) ([32G[K[31G
-  (+ (square x) (square y)))
-> (sum-of-squares 2 3)
-13
-> (define (f a)
-  (sum-of-squares (+a 1) (*a 2)))
-> (f 5)
-; +a: undefined;
+> (define (square x)
+   (exp (double (log x))))
+> square[8G[K[7G[K[6G[K> sq[K> s[K> [K(square 2)
+; double: undefined;
 ;  cannot reference an identifier before its definition
 ;   in module: top-level
 ; [,bt for context]
-> > (f 5)> (define (f a)
-  (sum-of-squares (+a 1) (*a 2)))[21G[1@ aa 1) (*[29G[1@ a
-> (f 5)
-136
-> (+ square> (+ squar[10G[K[9G[K[8G[K[7G[K[6G[K(square 6) (square 10))
-136
-> f
-#<procedure:f>
-> (define (absx)> (define (absx[15G[K x)
-  (cond ((> x 0) x)
-        ((= x 0) 0)
-        ((< x 0) (-x))))
-> abs 1[7G[K[6G> ab[K> a[K> [K(abs 1)
-1
-> (abs 0)
-0
-> (abs -1)
-; -x: undefined;
-;  cannot reference an identifier before its definition
-;   in module: top-level
-; [,bt for context]
-> (abs (-1[10G[K)[10G[K1))
-; application: not a procedure;
-;  expected a procedure that can be applied to arguments
-;   given: -1
-; [,bt for context]
-> > (abs (-1))[10G 1))
-; -x: undefined;
-;  cannot reference an identifier before its definition
-;   in module: top-level
-; [,bt for context]
-> (abs (0[9G[K- 0 1))
-; -x: undefined;
-;  cannot reference an identifier before its definition
-;   in module: top-level
-; [,bt for context]
-> > (abs (- 0 1))[11G1))[K[10G1))[K[8G-1)[K[8G0)[K[8G1)> (define (abs x)
-  (cond ((> x 0) x)
-        ((= x 0) 0)
-        ((< x 0) (-x))))[20G[1@ x
-> abs> ab[K> a[K> [K(abs -1)
-1
-> (define (abs x)
-  (cond ((< x 0) (- x))
-        (else x)))
-> (abs 1)
-1
-> (abs 0)
-0
-> (abs -1)
-1
-> (define (abs x)
-    (if (< x 0)
-         [9G(- x)
-        (x))
-  )
-> abs 1
-#<procedure:abs>
-1
-> (> [K(abs 1)
-; application: not a procedure;
-;  expected a procedure that can be applied to arguments
-;   given: 1
-; [,bt for context]
-> > (abs 1)> [P[8G[K> (define (abs x)
-    (if (< x 0)
-        (- x)
-        (x))
-  )  )  [K [K[A[13G[9Gx))[Kx)
-> abs 1
-#<procedure:abs>
-1
-> (abs 1)
-1
-> (and (> x 5) (< x 10))
-; x: undefined;
-;  cannot reference an identifier before its definition
-;   in module: top-level
-; [,bt for context]
-> (define x 5)
-> > (define x 5)> (and (> x 5) (< x 10))
-#f
-> > (and (> x 5) (< x 10))> (define x 5)[K[13G)[K[13G6)
-> > (define x 6)> (and (> x 5) (< x 10))
-#t
-> (define (>= x y)
-   (or (> x y) (= x y)))
-> (>= 1 2)
-#f
-> (>= 3 2)
-#t
-> (define (>= x y)
-    no[6G[K    [K(not (< x y)))
-> > (define (>= x y)
-    (not (< x y)))[A> (>= 3 2)[K
-[K[A[11G[7G1 2)
-#f
-> > (>= 1 2)> (define (>= x y)
-    (not (< x y)))[A> (>= 3 2)[K
-[K[A[11G
-#t
-> 10
-10
-> *+> *[K> [K(+ 5 3 4)
-12
-> (- 9 1)
-8
-> (/ 6 2)
-3
-> (+ (* 2 4) (- 4 6))
-6
-> (define a 3)
-> (define b (+ a 1))
-> (+ a b (* a b))
-19
-> a
-3
-> b
-4
-> (= a b)
-#f
-> (if (and (> b a [18G) (<b[22G[K b (* a b)))
-      b
-      a)
-4
-> (cond ((= a 4) 6)
-        ((= b 4) (+ 6 7 a))
-        (else 25))
-16
-> (+ 2 (if (> b a) b a))
-6
-> (* (cond ((> a b) a)
-            [12G((< a b) b)
-           (else -1))
-     (+_[8G[K a 1))
-16
-> (/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))
-  )
-  (* 3 (- 6 2) (- 2 7)))
--37/150
-> (define two-out-of-three a b c[11G[1@(t[34G)
-         if(  if[K  i[K  [K(if (and (a > b) ( a[22G[K[21G[20G[K[19G[18G[K[17G[K[16G[15G[K[14G[13G[K< a b) (< a c)) sum-of-squ[38G[K[37G[K[36G[K[35G[K[34G[K[33G[K[32G[K[31G[K[30G[K[29G[K(sum-of-squares b c)  (i[P   ([P   ([1@c   (c[1@o [6G[1@n [7G[1@d [51G[15G[1@=<< a b) ([24G[1@=<< a c)) (sum-of-squares b c) [10G[1@(a[54G
-        ((and (=< b a) (=< b c)) (sum-of-squares a c)[10G[Pa[9G[1@ ([54G[9G[P([10G[1@(a  (cond ((and (=< a b) (=< a c)) (sum-of-squares b c)        ((and (=< b a) (=< b c)) (sum-of-squares a c)      ((and (=< b a) (=< b c)) (sum-of-squares a c))
-  )
-  )
-  )
-> (define ([11G[Ksum-of-squares a b)[11G[1@(s[31G
-    (+ a[8G[K(* a a) (* b b)))
-> sum-of-squares([17G[K[3G> [1@(s[18G 1 2)
-5
-> (two-out-of-three 1 2 3)
-; =<: undefined;
-;  cannot reference an identifier before its definition
-;   in module: top-level
-; [,bt for context]
-> defin[7G[K[6G[K> de[K> d[K> [K(define (<[12G[K=< a b)
-    (not > a b))
-> > (define (=< a b)
-    (not > a b))[A> (two-out-of-three 1 2 3)
-[K[A[27G
-; not: arity mismatch;
-;  the expected number of arguments does not match the given number
-;   expected: 1
-;   given: 3
-; [,bt for context]
-> (define (sum-of-squares[25G[K[24G[K[23G[K[22G[K[21G[K[20G[K[19G[K[18G[K[17G[K[16G[K[15G[K[14G[K[13G[K[12G[Ktwo-out-of-three a b c)
-   (+ a b c))
-> two-out-of-three[3G> [1@(t[20G a b [24G[23G[K[22G[21G[K1 2 3()[27G[K[26G[K)
-6
-> > (two-out-of-three 1 2 3)> ([8@define ([29Ga b c)
-   (+ a b c))[A[12G=< a b)[K
-    (not > a b))[A> (sum-of-squares 1 2)
-[K[A[23G> ([8@define ([27Ga b)
-    (+ (* a a) (* b b)))[A[12Gtwo-out-of-three a b c)
-  (cond ((and (=< a b) (=< a c)) (sum-of-squares b c)
-        ((and (=< b a) (=< b c)) (sum-of-squares a c))
-  )
-  )
-  )
-> two-[6G[K> tw[K> t[K> [K(two-out-of-three 1 2 3)
-; not: arity mismatch;
-;  the expected number of arguments does not match the given number
-;   expected: 1
-;   given: 3
-; [,bt for context]
-> (=< 1 2)
-; not: arity mismatch;
-;  the expected number of arguments does not match the given number
-;   expected: 1
-;   given: 3
-; [,bt for context]
-> (<=)
-; <=: arity mismatch;
-;  the expected number of arguments does not match the given number
-;   expected: at least 1
-;   given: 0
-; [,bt for context]
-> <=
-#<procedure:<=>
-> (define (=< a b)
-   (not (> a b))
-  _  [K)
-> > (define (=< a b)
-   (not (> a b))
-  )[2A> <=[K
-[K
-[K[2A> <=> (<=)> (=< 1 2)> (two-out-of-three 1 2 3)
-; application: not a procedure;
-;  expected a procedure that can be applied to arguments
-;   given: #f
-; [,bt for context]
-> (and (<= 1 2) (<= 2 3))
-#t
-> (cond(([9G[K[8G[K ((and (<= 1 2) (<= 2 3[30G[K[29G[28G[K[27G[26G[K[25G[K[24G[K[23G[22G[K[21G[K[20G[19G[K[18G[17G[K[16G[K[15G[K[14G[13G[K[12G[K[11G[K[10G[K[9G[K[8G[7G[K[6G[K> (c[K> ([K> [K> (and (<= 1 2) (<= 2 3))[9G[P==[10G[1@<  1 2) (<[18G[P==[19G[1@< 
-#t
-> co> c[K> [K(cond ((and (=< 1 2) (=< 2 3)) (sum-of-squares 1 2)))
-5
-> (defi
+> (define (double x) (+ x x))
+> s> [K(square 2)
+4.0
+> ^D
+(base) ]0;kyu@kyu-Satellite-C55-C: ~/Desktop/TYCS/self-study[01;32mkyu@kyu-Satellite-C55-C[00m:[01;34m~/Desktop/TYCS/self-study[00m$ exit
+exit
+
+Script done on 2021-02-01 23:15:40-06:00 [COMMAND_EXIT_CODE="0"]

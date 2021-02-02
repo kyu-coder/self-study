@@ -1,0 +1,76 @@
+Considering only the values they return, the following two procedures for squaring a number should be indistinguishable.
+
+(define (square x) (* x x))
+
+(define (square x)
+  (exp (double (log x))))
+(define (double x) (+ x x))
+
+A procedure definition should be able to suppress detail.
+
+------------------------------------------------------------------------------------------------------
+
+Local names
+
+The following procedures should not be distinguisable:
+(define (square x) (* x x))
+(define (square y) (* y y))
+
+The meaning of a procedure should be independent of the parameter names used by its author.
+The simplest consequence of this principle is that the parameter names of a procedure must be local to the body of the procedure.
+
+A formal parameter of a procedure has a very special role in the procedure definition - it does not matter what name the formal parameter has. Such a name is called a bound variable, and we say that the procedure definition 'binds' its formal parameters.
+The meaning of a procedure definition is unchanged if a bound variable is consistently renamed throughout the definition.
+If a variable is not bound, we say that it is 'free'.
+The set of expressions for which a binding defines a name is called the 'scope' of that name.
+
+------------------------------------------------------------------------------------------------------
+
+Internal definitions and block structure
+
+Take a look at the following program which consists of separate procedures:
+
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-iter (improve guess x) x)))
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.001))
+(define (improve guess x)
+  (average guess (/ x guess)))
+  
+Imagaine I'm trying to write a really big program with many other programmers. They may use procedures with names good-enough, improve, or sqrt-iter (but with different functionalities). This may introduce many bugs into the program. 
+
+What I can do is define the procedures within the main procedure (sqrt x) so that the sub-procedure names will not overlap and other programmers can use these names if they need to.
+
+(define (sqrt x)
+  (define (good-enough? guess x)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (improve guess x)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess x)
+    (if (good-enough? guess x)
+        guess
+        (sqrt-iter (improve guess x) x)))
+  (sqrt-iter 1.0 x))
+  
+Such nesting of definitions, called block structure, is basically the right solution to the simplest name-packaging problem.
+
+Since x is bound in the definition of sqrt, the procedures good-enough?, improve, and sqrt-iter, which are defined internally to sqrt, are in the scope of x. Thus, it is not necessary to pass x explicitly to each of these procedures.
+Instead, we allow x to be a free variable in the internal definitions, as shown below. Then x gets its value from the argument with which the enclosing procedure sqrt is called.
+
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
+
+This discipline is called lexical scoping.
+	Lexical scoping dictates that free variables in a procedure are taken to refer to bindings made by 		enclosing procedure definitions; that is, they are looked up in the environment in which the procedure 		was defined. 
