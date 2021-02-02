@@ -1,0 +1,22 @@
+Functional programming protects you from having to think about which order the program is using.
+(The same input would result in the same output no matter which order of operation you follow)
+
+From the lecture example
+
+(define (zero x) (- x x))
+
+(zero (random 10)) returns 0 every time if we follow applicative order
+
+(zero (random 10)) can return different numbers every time we run this procedure if we use normal order.
+Why?
+
+(zero (random 10)) ---> (- (random 10) (random 10))
+
+and each of random 10 can return any number between 0 and 9, inclusive.
+So the result could be any of
+ 
+ (- 0 0), (- 0 1), (- 0 2), ...., (- 8 8), (- 8 9), ...., (- 9 7), (- 9 8), (- 9 9)
+ 
+ 
+ 
+ 
