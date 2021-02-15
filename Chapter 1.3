@@ -6,7 +6,210 @@ Ex.
 (define (cube x) (* x x x))
 
 we are not talking about the cube of a particular number, but rather about a method for obtaining the cube of any number.
-
 One of the things we should demand from a powerful programming language is the ability to build abstractions by assigning names to common patterns and then to work in terms of the abstractions directly.
+
+
+Often the same programmingg pattern will be used with a number of different procedures. To express such patterns as concepts, we will need to construct procedures that can accept procedures as arguments or return procedures as values. 
+Procedures that manupulate procedures are called higher-order procedures.
+
+---------------------------------------------------------------------------------------------------------------
+
+1.3.1 Procedures as Arguments
+
+(base) kyu@kyu-Satellite-C55-C:~/Desktop/TYCS/self-study$ racket
+Welcome to Racket v7.2.
+> (define (sum-integers a b)
+   (if (> a b)
+    0
+    (+ a (sum-integers (+ a 1) b))))
+> sum-integers 1 5
+#<procedure:sum-integers>
+1
+5
+> (sum-integers 1 5)
+15
+> (define (sum-cubes a b)
+   (if (> a b)
+    0
+    (+ (cube a) (sum-cubes (+ a 1) b))))
+> (cube 1)
+; cube: undefined;
+;  cannot reference an identifier before its definition
+;   in module: top-level
+; [,bt for context]
+> (define (cube a)
+   (* a a a))
+> (cube 2)
+8
+> (sum-cubes 1 5)
+225
+> (sum-cubes 1 3)
+36
+> (define (pi-sum a b)
+    (if (> a b)
+        0
+        (+ (/ 1.0 (* a (+ a 2))) (pi-sum (+ a 4) b))))
+> (pi-sum 1 2)
+0.3333333333333333
+> (pi-sum 1 5)
+0.3619047619047619
+> (pi-sum 1 10)
+0.372005772005772
+> pi
+3.141592653589793
+> (pi/8)
+; pi/8: undefined;
+;  cannot reference an identifier before its definition
+;   in module: top-level
+; [,bt for context]
+> (/ pi 8)
+0.39269908169872414
+> (pi-sum 1 100)
+0.3901993315738763
+> (pi-sum 1 1000)
+0.39244908194872286
+> (pi-sum 1 10000)
+0.3926740816989741
+> (pi-sum 1 100000)
+0.3926965816987244
+
+
+Common underlying pattern:
+(define (<name> a b)
+ (if (> a b)
+   0
+   (+ (<term> a)
+   (<name> (<next> a) b))))
+   
+(define (sum term a next b)
+  (if (> a b)
+      0
+      (+ (term a)
+         (sum term (next a) next b))))
+         
+so.. in this definition, 'sum' is like the 'E-looking' summation symbol (I think it's called sigma)
+'term' means each 'term' that gets added - for example (sigma) f(a) <- here f(a) is the 'term'
+'next' determines what next 'a' should be in f(a) - for example 'a' could take on values (1, 2, 3, 4 ..., 10)
+in this case 'next' would be a procedure that would increase an input by 1 and 'b' would be 10.
+
+> (define (pi-sum a b)
+    (define (pi-term x)
+      (/ 1.0 (* x (+ x 2))))
+    (define (pi-next x)
+      (+ x 4))
+    (sum pi-term a pi-next b))
+    
+According to the textboo, the above procedure approximates pi/8. (meaning the summation in theory converges to pi/8)
+and we can kind of see that below:
+
+> (* 8 (pi-sum 1 1000))
+3.139592655589783
+
+> (* 8 (pi-sum 1 10000))
+3.141392653591793
+
+> (* 8 (pi-sum 1 100000))
+3.141572653589795
+
+> pi
+3.141592653589793
+
+Another interesting numerical approximation:
+
+> (define (integral f a b dx)
+    (define (add-dx x) (+ x dx))
+    (* (sum f (+ a (/ dx 2.0)) add-dx b)
+       dx))
+> (integral cube 0 1 0.01)
+0.24998750000000042
+> (integral cube 0 1 0.001)
+0.249999875000001
+
+Here the procedure (add-dx x) is defined within a procedure. I think this is what was talked about in chapter 1.1. Packaging or something like that (so that add-dx would not be recognized outside the context of integral procedure)
+
+Exercise 1.29
+I would've liked more thorough explanation of the function ( I guessed the coefficients within the square brackets would follow this pattern: 1, 4, 2, 4, 2, 4, 2, 4, 2, 4, ....., 2, 4, 2, 4, ...., 1 )
+My guess was confirmed correct by wikipedia (composite simpson's rule https://en.wikipedia.org/wiki/Simpson%27s_rule) But the problem doesn't explicitly tell me that.
+Anyways..
+
+> (define (sum term a next b)
+   (if (> a b)
+   0
+   (+ (term a) (sum term (next a) next b))))
+
+
+> (define (simpson f a b n)
+   (define h (/ (- b a) n))
+   (define (yk k) (f (+ a (* k h))))
+   (define (simpson-term k)
+    (* (cond ((or (= k 0) (= k n)) 1)
+            ((odd? k) 4)
+            (else 2))
+       (yk k)))
+   (* (/ h 3) (sum simpson-term 0 inc n)))
+> (simpson cube 0 1 100)
+1/4
+> (simpson cube 0 1 1000)
+1/4
+> (simpson cube 0 1 1)
+1/3
+> (simpson cube 0 1 2)
+1/4
+> (simpson cube 0 1 3)
+47/243
+> (simpson cube 0 1 4)
+1/4
+> (simpson cube 0 1 5)
+127/625
+> (simpson cube 0 1 6)
+1/4
+
+
+1.3.2 Constructing Procedures Using Lambda
+
+(define (pi-sum a b)
+  (sum (lambda (x) (/ 1.0 (* x (+ x 2))))
+       a
+       (lambda (x) (+ x 4))
+       b))
+       
+In general, lambda is used to create procedures in the same way as define, except that no name is specified for the procedure.
+
+(define (plus4 x) (+ x 4))
+
+is equivalent to
+
+(define plus4 (lambda (x) (+ x 4)))
+
+(define (f x y)
+  ((lambda (a b)
+     (+ (* x (square a))
+        (* y b)
+        (* a b)))
+   (+ 1 (* x y))
+   (- 1 y)))
+
+(define (f x y)
+  (let ((a (+ 1 (* x y)))
+        (b (- 1 y)))
+    (+ (* x (square a))
+       (* y b)
+       (* a b))))
+       
+Sometimes we can use internal definitions to get the same effect as with let. For example, we could have defined the procedure f above as
+
+(define (f x y)
+  (define a (+ 1 (* x y)))
+  (define b (- 1 y))
+  (+ (* x (square a))
+     (* y b)
+     (* a b)))
+
+We prefer, however, to use let in situations like this and to use internal define only for internal procedures.
+       
+       
+       
+I skimmed through the rest of the chapter because it seemed to talk about mathematical concepts using what I've learned so far.
+
 
 
