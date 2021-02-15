@@ -1,0 +1,26 @@
+(lambda (x) (* x x))
+returns a procedure
+
+
+(define (square x) (* x x))
+
+is an abbreviation for
+
+(define square (lambda (x) (* x x)))
+
+this is the same kind of define as
+
+(define foo (+ 2 3))
+
+lambda makes a procedure. lambda is how you make a procedure.
+lambda is the only way to make a procedure.
+
+((lambda (x) (* x x)) 6)
+returns 36
+
+
+Programming is easy if you can see the whole program at once
+so we try to make our program smaller
+one way to do that is by generalizing patterns
+
+
