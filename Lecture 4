@@ -1,0 +1,26 @@
+You could build a programming language consisting of a lambda and the ability to call procedures and nothing else. And that language will be universal - meaning any other language can do, this language can do.
+
+First Class Data type
+Can be
+	- the value of a variable
+	- an argument to a procedure
+	- the value returned by a procedure
+	- a member of an aggregate
+	- anonymous
+
+	
+(define (make-adder num)
+	  (lambda (x) (+ x num)))
+
+make-adder returns a lambda procedure that would take an input and add 'num' to that input as a return value.
+so it's a procedure that has potential to create many different procedures.
+
+ex>
+(define plus3 (make-adder 3))
+(plus3 8)
+11
+
+((make-adder 9) 7)
+16
+
+
